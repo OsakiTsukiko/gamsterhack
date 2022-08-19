@@ -16,7 +16,7 @@ public class GamsterHack extends MeteorAddon {
         LOG.info("Initializing Gamster Hack");
 
         // Modules
-        Modules.get().add(new AutoClanBase());
+        Modules.get().add(new AutoPanic());
     }
 
     @Override

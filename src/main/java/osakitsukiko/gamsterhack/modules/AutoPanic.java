@@ -14,7 +14,7 @@ import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import osakitsukiko.gamsterhack.GamsterHack;
 
-public class AutoClanBase extends Module  {
+public class AutoPanic extends Module  {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<String> command = sgGeneral.add(new StringSetting.Builder()
@@ -36,7 +36,7 @@ public class AutoClanBase extends Module  {
     private final Setting<Boolean> smart = sgGeneral.add(new BoolSetting.Builder()
         .name("smart")
         .description("Executes COMMAND when you're about to take enough damage to kill you.")
-        .defaultValue(true)
+        .defaultValue(false)
         .build()
     );
 
@@ -66,22 +66,22 @@ public class AutoClanBase extends Module  {
 
     private final Setting<Boolean> smartToggle = sgGeneral.add(new BoolSetting.Builder()
         .name("smart-toggle")
-        .description("Disables Auto Clan Base after a low-health teleport. WILL re-enable once you heal.")
-        .defaultValue(false)
+        .description("Disables Auto Panic after a low-health execution. WILL re-enable once you heal.")
+        .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> toggleOff = sgGeneral.add(new BoolSetting.Builder()
         .name("toggle-off")
-        .description("Disables Auto Clan Base after usage.")
+        .description("Disables Auto Panic after usage.")
         .defaultValue(true)
         .build()
     );
 
-    public AutoClanBase() {
+    public AutoPanic() {
         super(
             GamsterHack.CATEGORY,
-            "auto-clan-base",
+            "auto-panic",
             "Automatically executes COMMAND you when certain requirements are met."
         );
     }
