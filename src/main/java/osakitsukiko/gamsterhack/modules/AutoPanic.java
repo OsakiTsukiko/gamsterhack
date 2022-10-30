@@ -14,13 +14,18 @@ import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import osakitsukiko.gamsterhack.GamsterHack;
 
+import java.util.*;
+
 public class AutoPanic extends Module  {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
-    private final Setting<String> command = sgGeneral.add(new StringSetting.Builder()
-        .name("command")
-        .description("COMMAND to be executed.")
-        .defaultValue("/clan base")
+    private final Setting<List<String>> commands = sgGeneral.add(new StringListSetting.Builder()
+        .name("commands")
+        .description("COMMANDS to be executed on PANIC.")
+        .defaultValue(List.of(
+            "/clan base",
+            ".b stop"
+        ))
         .build()
     );
 
@@ -153,6 +158,8 @@ public class AutoPanic extends Module  {
     }
 
     private void executeCommand(){
-        ChatUtils.sendPlayerMsg(command.get());
+        commands.get().forEach((cmd) -> {
+            ChatUtils.sendPlayerMsg(cmd);
+        });
     }
 }
